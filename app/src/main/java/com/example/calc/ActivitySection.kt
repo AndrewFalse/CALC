@@ -35,27 +35,6 @@ import com.example.calc.ui.theme.DarkOrange
 import com.example.calc.ui.theme.Green
 import com.example.calc.ui.theme.Orange
 
-val activities = listOf(
-    Activity(
-        activityName = "Велопрогулка",
-        activityIcon = Icons.Rounded.BikeScooter,
-        activityDescription = "Прогулка на велосипедах по горам",
-        color = getGradient(Green, DarkGreen)
-    ),
-    Activity(
-        activityName = "Гольф",
-        activityIcon = Icons.Rounded.GolfCourse,
-        activityDescription = "Мини-гольф с друзьями",
-        color = getGradient(Orange, DarkOrange)
-    ),
-    Activity(
-        activityName = "Спа",
-        activityIcon = Icons.Rounded.Pool,
-        activityDescription = "Полный косплекс для расслабления",
-        color = getGradient(Blue, DarkBlue)
-    )
-)
-
 fun getGradient(
     startColor: Color,
     endColor: Color,
@@ -66,7 +45,7 @@ fun getGradient(
 }
 
 @Composable
-fun ActivitySection(){
+fun ActivitySection(activities: List<Activity>){
     LazyRow {
         items(activities.size){ index ->
             ActivityCard(activities[index])
@@ -83,7 +62,7 @@ fun ActivityCard(
         Column(
             modifier = Modifier
                 .clip(RoundedCornerShape(16.dp))
-                .background(activity.color)
+                .background(getGradient(Green, DarkGreen))
                 .width(250.dp)
                 .height(160.dp)
                 .clickable { }
