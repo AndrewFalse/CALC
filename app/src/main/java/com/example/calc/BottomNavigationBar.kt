@@ -10,23 +10,24 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.example.calc.data.BottomNavigation
 
 val items = listOf(
     BottomNavigation(
-        title = "Home",
+        title = "Главная",
         icon = Icons.Rounded.Home
     ),
 
     BottomNavigation(
-        title = "Search",
+        title = "Поиск",
         icon = Icons.Rounded.Search
     ),
 
     BottomNavigation(
-        title = "Profile",
+        title = "Профиль",
         icon = Icons.Rounded.AccountCircle
     )
 )
@@ -47,6 +48,12 @@ fun BottomNavigationBar() {
                             imageVector = item.icon,
                             contentDescription = item.title,
                             tint = MaterialTheme.colorScheme.onBackground
+                        )
+                    },
+                    label = {
+                        Text(
+                            text = item.title,
+                            color = MaterialTheme.colorScheme.onBackground
                         )
                     }
                 )
