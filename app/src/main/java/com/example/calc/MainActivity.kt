@@ -67,7 +67,7 @@ fun HomeScreen(){
         ) {
 
             WelcomeSection()
-            //ActivitySection()
+            ActivitySection()
             Spacer(modifier = Modifier.height(16.dp))
             //PagesSection()
             //ScheduleSection()
