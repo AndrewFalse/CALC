@@ -7,11 +7,15 @@ import androidx.lifecycle.LiveData
 class ActivityViewModel(application: Application):AndroidViewModel(application) {
 
     val readAllData: LiveData<List<Activity>>
+    private val readAllEventData: LiveData<List<Event>>
+    private val readAssignedEvents: LiveData<List<Event>>
     private val repository: ActivityRepository
 
     init {
         val activityDao = ActivityDatabase.getDatabase(application).activityDao()
         repository = ActivityRepository(activityDao)
         readAllData = repository.readAllData
+        readAllEventData = repository.readAllEventData
+        readAssignedEvents = repository.readAssignedEvents
     }
 }

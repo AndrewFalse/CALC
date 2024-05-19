@@ -85,7 +85,6 @@ fun HomeScreen(activities: List<Activity>){
             WelcomeSection()
             ActivitySection(activities)
             Spacer(modifier = Modifier.height(16.dp))
-            //PagesSection()
             //ScheduleSection()
         }
     }
