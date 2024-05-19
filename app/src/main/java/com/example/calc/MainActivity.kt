@@ -90,6 +90,7 @@ fun HomeScreen(activities: List<Activity>, events: List<Event>){
             WelcomeSection()
             ActivitySection(activities)
             Spacer(modifier = Modifier.height(16.dp))
+            EventsSuggestionSection(events)
             ScheduleSection(events)
         }
     }
