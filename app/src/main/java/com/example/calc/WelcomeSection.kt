@@ -46,7 +46,7 @@ fun WelcomeSection(){
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = "Андрей!",
+                text = "Пользователь!",
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground

@@ -8,7 +8,7 @@ class ActivityViewModel(application: Application):AndroidViewModel(application) 
 
     val readAllData: LiveData<List<Activity>>
     private val readAllEventData: LiveData<List<Event>>
-    private val readAssignedEvents: LiveData<List<Event>>
+    val readAssignedEvents: LiveData<List<Event>>
     private val repository: ActivityRepository
 
     init {

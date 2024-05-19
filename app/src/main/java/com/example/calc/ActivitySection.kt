@@ -50,9 +50,19 @@ fun getGradient(
 
 @Composable
 fun ActivitySection(activities: List<Activity>){
-    LazyRow {
-        items(activities.size){ index ->
-            ActivityCard(activities[index])
+    Column {
+        Text(
+            text = "Новинки",
+            fontSize = 32.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Black,
+            modifier = Modifier.padding(horizontal = 16.dp)
+        )
+        Spacer(modifier = Modifier.height(4.dp))
+        LazyRow {
+            items(activities.size){ index ->
+                ActivityCard(activities[index])
+            }
         }
     }
 }

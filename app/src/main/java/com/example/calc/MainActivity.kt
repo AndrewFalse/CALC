@@ -25,6 +25,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.calc.data.Activity
 import com.example.calc.data.ActivityViewModel
+import com.example.calc.data.Event
 import com.example.calc.ui.theme.CALCTheme
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
@@ -45,9 +46,13 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val activityListState = remember { mutableStateOf(emptyList<Activity>()) }
-                    HomeScreen(activityListState.value)
+                    val eventListState = remember { mutableStateOf(emptyList<Event>()) }
+                    HomeScreen(activityListState.value, eventListState.value)
                     mActivityViewModel.readAllData.observe(this, Observer { activities ->
                         activityListState.value = activities
+                    })
+                    mActivityViewModel.readAssignedEvents.observe(this, Observer { events ->
+                        eventListState.value = events
                     })
 
                 }
@@ -71,7 +76,7 @@ class MainActivity : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(activities: List<Activity>){
+fun HomeScreen(activities: List<Activity>, events: List<Event>){
     Scaffold(
         bottomBar = {
             BottomNavigationBar()
@@ -85,7 +90,7 @@ fun HomeScreen(activities: List<Activity>){
             WelcomeSection()
             ActivitySection(activities)
             Spacer(modifier = Modifier.height(16.dp))
-            //ScheduleSection()
+            ScheduleSection(events)
         }
     }
 }
