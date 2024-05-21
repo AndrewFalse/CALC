@@ -137,7 +137,7 @@ fun HomeScreen(activities: List<Activity>, events: List<Event>){
                 ScheduleSection(events)
             }
             else if (selected == 1){
-                EventAddPage()
+                EventPage(events)
             }
             else if (selected == 2){
                 ActivitySection(activities)
