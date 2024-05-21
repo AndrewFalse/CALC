@@ -140,7 +140,7 @@ fun HomeScreen(activities: List<Activity>, events: List<Event>){
                 EventPage(events)
             }
             else if (selected == 2){
-                ActivitySection(activities)
+                ProfilePage(events = events)
             }
         }
     }
