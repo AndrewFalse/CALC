@@ -4,25 +4,34 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
 import com.example.calc.data.Activity
 import com.example.calc.data.ActivityViewModel
 import com.example.calc.data.Event
@@ -77,21 +86,62 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(activities: List<Activity>, events: List<Event>){
+
+    var selected by remember {
+        mutableStateOf(0)
+    }
+
     Scaffold(
         bottomBar = {
-            BottomNavigationBar()
+            NavigationBar() {
+                Row(
+                    modifier = Modifier.background(MaterialTheme.colorScheme.inverseOnSurface)
+                ) {
+
+                    items.forEachIndexed{ index, item ->
+                        NavigationBarItem(
+                            selected = index == selected,
+                            onClick = { selected = index},
+                            icon = {
+                                Icon(
+                                    imageVector = item.icon,
+                                    contentDescription = item.title,
+                                    tint = MaterialTheme.colorScheme.onBackground
+                                )
+                            },
+                            label = {
+                                Text(
+                                    text = item.title,
+                                    color = MaterialTheme.colorScheme.onBackground
+                                )
+                            }
+                        )
+                    }
+                }
+            }
         }
     ) { padding ->
 
         Column(
-            modifier = Modifier.fillMaxSize().padding(padding)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
         ) {
 
-            WelcomeSection()
-            ActivitySection(activities)
-            Spacer(modifier = Modifier.height(16.dp))
-            EventsSuggestionSection(events)
-            ScheduleSection(events)
+            if (selected == 0)
+            {
+                WelcomeSection()
+                ActivitySection(activities)
+                Spacer(modifier = Modifier.height(16.dp))
+                EventsSuggestionSection(events)
+                ScheduleSection(events)
+            }
+            else if (selected == 1){
+                EventAddPage()
+            }
+            else if (selected == 2){
+                ActivitySection(activities)
+            }
         }
     }
 }

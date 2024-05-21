@@ -19,46 +19,19 @@ import com.example.calc.data.BottomNavigation
 val items = listOf(
     BottomNavigation(
         title = "Главная",
-        icon = Icons.Rounded.Home
+        icon = Icons.Rounded.Home,
+        route = "main"
     ),
 
     BottomNavigation(
         title = "События",
-        icon = Icons.Rounded.LocalActivity
+        icon = Icons.Rounded.LocalActivity,
+        route = "events"
     ),
 
     BottomNavigation(
         title = "Профиль",
-        icon = Icons.Rounded.AccountCircle
+        icon = Icons.Rounded.AccountCircle,
+        route = "profile"
     )
 )
-
-@Composable
-fun BottomNavigationBar() {
-    NavigationBar() {
-        Row(
-            modifier = Modifier.background(MaterialTheme.colorScheme.inverseOnSurface)
-        ) {
-
-            items.forEachIndexed{ index, item ->
-                NavigationBarItem(
-                    selected = index == 0,
-                    onClick = { /*TODO*/ },
-                    icon = {
-                        Icon(
-                            imageVector = item.icon,
-                            contentDescription = item.title,
-                            tint = MaterialTheme.colorScheme.onBackground
-                        )
-                    },
-                    label = {
-                        Text(
-                            text = item.title,
-                            color = MaterialTheme.colorScheme.onBackground
-                        )
-                    }
-                )
-            }
-        }
-    }
-}
