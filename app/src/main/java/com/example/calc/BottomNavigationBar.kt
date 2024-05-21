@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.Home
+import androidx.compose.material.icons.rounded.LocalActivity
 import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -22,8 +23,8 @@ val items = listOf(
     ),
 
     BottomNavigation(
-        title = "Поиск",
-        icon = Icons.Rounded.Search
+        title = "События",
+        icon = Icons.Rounded.LocalActivity
     ),
 
     BottomNavigation(
